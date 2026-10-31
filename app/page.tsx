@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowDownRight, ArrowUpRight, Github, Linkedin, Mail, Menu, X, Code2, Layers3, Sparkles, MoveUpRight, Phone, MapPin, ExternalLink } from "lucide-react";
+import { ArrowDown, ArrowDownRight, ArrowUpRight, Github, Linkedin, Facebook, Mail, Menu, X, Code2, Layers3, Sparkles, MoveUpRight, Phone, MapPin, ExternalLink } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -76,7 +76,7 @@ export default function Home() {
               <a href="#work" className="group inline-flex items-center gap-3 rounded-full bg-lime px-6 py-3.5 text-sm font-bold text-ink transition hover:bg-white">Explore my work <ArrowUpRight size={16} className="transition group-hover:rotate-45"/></a>
               <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm text-white/80 transition hover:border-lime hover:text-lime">Get in touch <ArrowDownRight size={15}/></a>
             </div>
-            <div className="mt-14 flex items-center gap-6 text-white/45"><a aria-label="GitHub" href="https://github.com/tarekhossain0043-dot" target="_blank" rel="noreferrer" className="transition hover:text-lime"><Github size={18}/></a><a aria-label="LinkedIn" href="https://www.linkedin.com/in/tanvir-hasan-981952388/" target="_blank" rel="noreferrer" className="transition hover:text-lime"><Linkedin size={18}/></a><a aria-label="Email" href="mailto:tarekhossain0043@gmail.com" className="transition hover:text-lime"><Mail size={18}/></a><span className="h-px w-14 bg-white/15"/><span className="text-[10px] tracking-[.18em]">BOGURA, BANGLADESH</span></div>
+            <div className="mt-14 flex items-center gap-6 text-white/45"><a aria-label="GitHub" href="https://github.com/tarekhossain0043-dot" target="_blank" rel="noreferrer" className="transition hover:text-lime"><Github size={18}/></a><a aria-label="LinkedIn" href="https://www.linkedin.com/in/tanvir-hasan-981952388/" target="_blank" rel="noreferrer" className="transition hover:text-lime"><Linkedin size={18}/></a><a aria-label="Facebook" href="https://www.facebook.com/profile.php?id=61579860299121" target="_blank" rel="noreferrer" className="transition hover:text-lime"><Facebook size={18}/></a><a aria-label="Email" href="mailto:tarekhossain0043@gmail.com" className="transition hover:text-lime"><Mail size={18}/></a><span className="h-px w-14 bg-white/15"/><span className="text-[10px] tracking-[.18em]">BOGURA, BANGLADESH</span></div>
           </div>
           <div className="hero-orb relative mx-auto flex aspect-square w-full max-w-[520px] items-center justify-center">
             <div className="orb-float relative aspect-square w-[78%]">
