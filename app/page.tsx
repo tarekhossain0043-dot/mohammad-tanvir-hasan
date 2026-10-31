@@ -19,7 +19,7 @@ const skills = [
 
 export default function Home() {
   const root = useRef<HTMLDivElement>(null);
-  const orb = useRef<HTMLDivElement>(null);
+  const orb = useRef<HTMLDivElement>(null);\n  const heroSection = useRef<HTMLElement>(null);
   const [menuOpen,setMenuOpen] = useState(false);
   const [cursor,setCursor] = useState({x:-100,y:-100,active:false});
 
@@ -40,7 +40,7 @@ export default function Home() {
       gsap.utils.toArray<HTMLElement>(".reveal").forEach((el) => gsap.fromTo(el,{y:42,opacity:0},{y:0,opacity:1,duration:.85,ease:"power3.out",scrollTrigger:{trigger:el,start:"top 86%",toggleActions:"play none none reverse"}}));
       gsap.to(".hero-orb",{yPercent:18,ease:"none",scrollTrigger:{trigger:".hero",start:"top top",end:"bottom top",scrub:1}});
     },root);
-    return () => { ctx.revert(); };
+    return () => { hero?.removeEventListener("mousemove", handleHeroMove); hero?.removeEventListener("mouseleave", handleHeroLeave); ctx.revert(); };
   },[]);
 
   const closeMenu = () => setMenuOpen(false);
@@ -63,32 +63,32 @@ export default function Home() {
         {menuOpen && <nav className="glass flex flex-col gap-5 px-6 py-7 md:hidden">{nav.map(([label,href])=><a key={label} href={href} onClick={closeMenu} className="text-lg">{label}</a>)}<a href="mailto:tarekhossain0043@gmail.com" className="text-lime">Let&apos;s talk ↗</a></nav>}
       </header>
 
-      <section id="home" className="hero noise site-grid relative flex min-h-[780px] items-center overflow-hidden px-5 pb-20 pt-32 md:min-h-[900px] md:px-8">
-        <div className="hero-glow pointer-events-none absolute right-[4%] top-[12%] h-[560px] w-[560px] rounded-full bg-lime/[.07] blur-[110px]"/>
+      <section ref={heroSection} id="home" className="hero noise site-grid relative flex min-h-[820px] items-center overflow-hidden px-5 pb-24 pt-32 md:min-h-[940px] md:px-8">
+        <div className="hero-glow pointer-events-none absolute right-[4%] top-[12%] h-[560px] w-[560px] rounded-full bg-lime/[.09] blur-[110px]"/><div className="hero-spotlight pointer-events-none absolute inset-0"/>
         <div className="mx-auto grid w-full max-w-[1240px] items-center gap-10 lg:grid-cols-[1.08fr_.92fr]">
-          <div className="hero-copy relative z-10">
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-lime/25 bg-lime/[.06] px-4 py-2 text-[11px] tracking-[.16em] text-lime"><span className="h-1.5 w-1.5 animate-pulse rounded-full bg-lime"/> AVAILABLE FOR SELECT PROJECTS</div>
+          <div className="hero-copy relative z-10">\n            <div className="mb-6 flex flex-wrap items-center gap-2 text-[10px] tracking-[.16em] text-white/35"><span className="rounded-full border border-white/10 px-3 py-1.5">INDEPENDENT DEVELOPER</span><span className="text-lime">✳</span><span>DESIGN MINDED · ENGINEERING FOCUSED</span></div>
+            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-lime/25 bg-lime/[.07] px-4 py-2 text-[11px] tracking-[.13em] text-lime shadow-[0_0_35px_rgba(198,243,107,.07)]"><span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime opacity-60"/><span className="relative inline-flex h-2 w-2 rounded-full bg-lime"/></span> OPEN TO THE RIGHT OPPORTUNITY <span className="ml-1 text-white/30">↗</span></div>
             <p className="mb-4 text-sm tracking-[.2em] text-white/45">HELLO, I&apos;M</p>
-            <h1 className="max-w-[760px] text-[clamp(3.1rem,7.2vw,6.7rem)] font-semibold leading-[.98] tracking-[-.075em]">Mohammad<br/><span className="text-lime">Tanvir Hasan</span><br/>Tarek<span className="text-lime">.</span></h1>
-            <div className="mt-8 flex items-center gap-4"><span className="h-px w-12 bg-lime"/><p className="text-sm font-medium tracking-wide text-white/75 md:text-base">Full-Stack Web Developer</p></div>
+            <h1 className="max-w-[780px] text-[clamp(3.1rem,7.2vw,6.7rem)] font-bold leading-[.94] tracking-[-.078em]">Mohammad<br/><span className="hero-name-gradient">Tanvir Hasan</span><br/>Tarek<span className="text-lime">.</span></h1>
+            <div className="mt-8 flex items-center gap-4"><span className="h-px w-12 bg-lime"/><p className="text-sm font-semibold tracking-wide text-white/80 md:text-base">Full-Stack Web Developer</p><span className="rounded-full border border-white/10 px-2.5 py-1 text-[9px] tracking-[.16em] text-white/35">3+ YEARS</span></div>
             <p className="mt-6 max-w-[510px] text-sm leading-7 text-white/48 md:text-base md:leading-8">I build purposeful digital experiences — from polished interfaces to reliable backend systems. Focused on clean code, thoughtful details, and products that work beautifully.</p>
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <a href="#work" className="group inline-flex items-center gap-3 rounded-full bg-lime px-6 py-3.5 text-sm font-bold text-ink transition hover:bg-white">Explore my work <ArrowUpRight size={16} className="transition group-hover:rotate-45"/></a>
               <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm text-white/80 transition hover:border-lime hover:text-lime">Get in touch <ArrowDownRight size={15}/></a>
             </div>
-            <div className="mt-14 flex items-center gap-6 text-white/45"><a aria-label="GitHub" href="https://github.com/tarekhossain0043-dot" target="_blank" rel="noreferrer" className="transition hover:text-lime"><Github size={18}/></a><a aria-label="LinkedIn" href="https://www.linkedin.com/in/tanvir-hasan-981952388/" target="_blank" rel="noreferrer" className="transition hover:text-lime"><Linkedin size={18}/></a><a aria-label="Facebook" href="https://www.facebook.com/profile.php?id=61579860299121" target="_blank" rel="noreferrer" className="transition hover:text-lime"><Facebook size={18}/></a><a aria-label="Email" href="mailto:tarekhossain0043@gmail.com" className="transition hover:text-lime"><Mail size={18}/></a><span className="h-px w-14 bg-white/15"/><span className="text-[10px] tracking-[.18em]">BOGURA, BANGLADESH</span></div>
+            <div className="mt-12 grid max-w-[470px] grid-cols-3 border-y border-white/[.09] py-5"><div><div className="text-xl font-semibold tracking-tight text-white">03<span className="text-lime">+</span></div><div className="mt-1 text-[9px] tracking-[.15em] text-white/35">YEARS BUILDING</div></div><div className="border-l border-white/10 pl-5"><div className="text-xl font-semibold tracking-tight text-white">Full<span className="text-lime">-</span></div><div className="mt-1 text-[9px] tracking-[.15em] text-white/35">STACK SKILLSET</div></div><div className="border-l border-white/10 pl-5"><div className="text-xl font-semibold tracking-tight text-white">Web<span className="text-lime">+</span></div><div className="mt-1 text-[9px] tracking-[.15em] text-white/35">PRODUCT FOCUS</div></div></div>\n            <div className="mt-8 flex items-center gap-6 text-white/45"><a aria-label="GitHub" href="https://github.com/tarekhossain0043-dot" target="_blank" rel="noreferrer" className="transition hover:text-lime"><Github size={18}/></a><a aria-label="LinkedIn" href="https://www.linkedin.com/in/tanvir-hasan-981952388/" target="_blank" rel="noreferrer" className="transition hover:text-lime"><Linkedin size={18}/></a><a aria-label="Facebook" href="https://www.facebook.com/profile.php?id=61579860299121" target="_blank" rel="noreferrer" className="transition hover:text-lime"><Facebook size={18}/></a><a aria-label="Email" href="mailto:tarekhossain0043@gmail.com" className="transition hover:text-lime"><Mail size={18}/></a><span className="h-px w-14 bg-white/15"/><span className="text-[10px] tracking-[.18em]">BOGURA, BANGLADESH</span></div>
           </div>
-          <div className="hero-orb relative mx-auto flex aspect-square w-full max-w-[520px] items-center justify-center">
-            <div className="orb-float relative aspect-square w-[78%]">
+          <div ref={orb} className="hero-orb relative mx-auto flex aspect-square w-full max-w-[540px] items-center justify-center">
+            <div className="orb-float relative aspect-square w-[78%]">\n              <div className="hero-halo absolute inset-[-12%] rounded-full"/>
               <div className="absolute inset-0 rounded-full bg-lime/10 blur-[70px]"/>
               <div className="orbit"/><div className="orbit two"/><div className="orbit three"/>
-              <div className="orb-core absolute inset-[19%] rounded-full"/>
+              <div className="orb-core absolute inset-[19%] rounded-full"><div className="orb-glint absolute left-[20%] top-[16%] h-[18%] w-[28%] rotate-[-35deg] rounded-full bg-white/25 blur-xl"/></div>
               <div className="absolute left-[15%] top-[18%] h-3 w-3 rounded-full bg-lime shadow-[0_0_25px_#c6f36b]"/>
               <div className="absolute bottom-[16%] right-[8%] h-2 w-2 rounded-full bg-white shadow-[0_0_20px_white]"/>
-              <div className="glass absolute -right-3 top-[18%] rounded-2xl px-4 py-3 shadow-2xl"><div className="text-[9px] tracking-[.18em] text-white/40">BUILDING WITH</div><div className="mt-1 text-xs font-semibold text-lime">PURPOSE + PRECISION</div></div>
-              <div className="glass absolute -bottom-1 left-0 rounded-2xl px-4 py-3"><div className="flex items-center gap-2"><Code2 size={15} className="text-lime"/><span className="text-xs font-medium">Code. Create. Iterate.</span></div></div>
+              <div className="glass float-card absolute -right-5 top-[14%] rounded-2xl px-4 py-3 shadow-2xl"><div className="flex items-center gap-2 text-[9px] tracking-[.18em] text-white/40"><span className="h-1.5 w-1.5 rounded-full bg-lime"/> CURRENT FOCUS</div><div className="mt-1.5 text-xs font-semibold text-lime">PURPOSE + PRECISION</div></div>\n              <div className="glass float-card float-card-delay absolute -left-8 top-[42%] rounded-2xl px-3.5 py-3 shadow-2xl"><div className="text-[9px] tracking-[.16em] text-white/35">STACK / 2026</div><div className="mt-1.5 flex gap-1.5"><span className="rounded bg-white/10 px-2 py-1 text-[9px] text-white/75">React</span><span className="rounded bg-white/10 px-2 py-1 text-[9px] text-white/75">Next</span><span className="rounded bg-white/10 px-2 py-1 text-[9px] text-white/75">Py</span></div></div>
+              <div className="glass float-card absolute -bottom-1 left-0 rounded-2xl px-4 py-3"><div className="flex items-center gap-2"><Code2 size={15} className="text-lime"/><span className="text-xs font-medium">Code. Create. Iterate.</span></div></div>
             </div>
-            <div className="absolute bottom-[8%] right-[2%] text-right"><div className="text-[10px] tracking-[.25em] text-white/35">SCROLL TO EXPLORE</div><ArrowDown className="ml-auto mt-2 text-lime" size={18}/></div>
+            <div className="absolute bottom-[5%] right-[2%] text-right"><div className="text-[10px] tracking-[.25em] text-white/35">SCROLL TO EXPLORE</div><ArrowDown className="ml-auto mt-2 animate-bounce text-lime" size={18}/></div>
           </div>
         </div>
         <div className="pointer-events-none absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-lime/30 to-transparent"/>
