@@ -19,7 +19,8 @@ const skills = [
 
 export default function Home() {
   const root = useRef<HTMLDivElement>(null);
-  const orb = useRef<HTMLDivElement>(null);\n  const heroSection = useRef<HTMLElement>(null);
+  const orb = useRef<HTMLDivElement>(null);
+  const heroSection = useRef<HTMLElement>(null);
   const [menuOpen,setMenuOpen] = useState(false);
   const [cursor,setCursor] = useState({x:-100,y:-100,active:false});
 
@@ -31,6 +32,22 @@ export default function Home() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+    const hero = heroSection.current;
+    const visual = orb.current;
+    const handleHeroMove = (event: MouseEvent) => {
+      if (!hero || !visual || window.matchMedia("(pointer: coarse)").matches) return;
+      const rect = hero.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      hero.style.setProperty("--spot-x", `${event.clientX - rect.left}px`);
+      hero.style.setProperty("--spot-y", `${event.clientY - rect.top}px`);
+      gsap.to(visual, { rotateY: x * 13, rotateX: y * -10, duration: 0.65, ease: "power2.out", transformPerspective: 900 });
+    };
+    const handleHeroLeave = () => {
+      if (visual) gsap.to(visual, { rotateY: 0, rotateX: 0, duration: 0.8, ease: "power3.out" });
+    };
+    hero?.addEventListener("mousemove", handleHeroMove);
+    hero?.addEventListener("mouseleave", handleHeroLeave);
     const ctx = gsap.context(() => {
       gsap.from(".hero-copy > *",{y:34,opacity:0,duration:1,stagger:.12,ease:"power3.out",delay:.15});
       gsap.to(".orb-float",{y:-18,rotation:5,duration:4.5,repeat:-1,yoyo:true,ease:"sine.inOut"});
