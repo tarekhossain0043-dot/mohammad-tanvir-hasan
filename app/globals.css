@@ -5,7 +5,7 @@
 :root { color-scheme: dark; --bg:#090b10; --panel:#11151d; --line:rgba(255,255,255,.1); --lime:#c6f36b; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; background:var(--bg); }
-body { margin:0; background:var(--bg); color:#f5f6f2; font-family:Arial, Helvetica, sans-serif; overflow-x:hidden; }
+body { margin:0; background:var(--bg); color:#f5f6f2; font-family:var(--font-dm-sans), sans-serif; overflow-x:hidden; }
 ::selection { background:var(--lime); color:#090b10; }
 a { color:inherit; text-decoration:none; }
 button { font:inherit; }
@@ -28,3 +28,16 @@ button { font:inherit; }
 .skill-pill:hover { border-color:var(--lime); color:var(--lime); transform:translateY(-3px); }
 @media (pointer:coarse) { .cursor-dot,.cursor-ring { display:none; } }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; } }
+
+.hero { isolation:isolate; }
+.hero-spotlight { z-index:0; opacity:.7; background:radial-gradient(480px circle at var(--spot-x,72%) var(--spot-y,40%),rgba(198,243,107,.085),transparent 68%); transition:opacity .35s ease; }
+.hero-name-gradient { background:linear-gradient(105deg,#c6f36b 5%,#f2ffd5 48%,#a7d95a 95%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.hero-orb { will-change:transform; }
+.hero-halo { border:1px solid rgba(198,243,107,.12); box-shadow:0 0 90px rgba(198,243,107,.07),inset 0 0 70px rgba(198,243,107,.035); animation:halo-pulse 5s ease-in-out infinite alternate; }
+.orb-glint { pointer-events:none; }
+.float-card { animation:card-float 5.5s ease-in-out infinite; }
+.float-card-delay { animation-delay:-2.4s; }
+@keyframes halo-pulse { from { transform:scale(.96); opacity:.45; } to { transform:scale(1.045); opacity:1; } }
+@keyframes card-float { 0%,100% { translate:0 0; } 50% { translate:0 -9px; } }
+@media (max-width:640px) { .hero-orb { max-width:390px; width:94%; margin-top:1.5rem; } .float-card { scale:.88; } }
+@media (prefers-reduced-motion:reduce) { .hero-halo,.float-card { animation:none!important; } }
